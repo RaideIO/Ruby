@@ -117,17 +117,18 @@ class RaideAPI
   #
   # Submit a Ticket.
   # 
-  # @param  mixed   requester       Either an e-mail address, or an array {id, email, name}.  
   # @param  string  base64_summary
-  # @param  string  comment
+  # @param  string  subject     
+  # @param  string  description
+  # @param  mixed   requester       Either an e-mail address, or an array {id, email, name}.  
   # @param  string  external_id
   # @return array
   #
 
   #server varible is accesible because of http://clearcove.ca/2008/08/recipe-make-request-environment-available-to-models-in-rails/
-  def submit(base64_summary, requester, comment = '', external_id = '' )
+  def submit(base64_summary, subject, description, requester, external_id = '' )
     begin
-      parameters = {"bug" => base64_summary,"comment" => comment, "external_id" => external_id, "requester" => requester, "server" => Thread.current[:env]}
+      parameters = {"summary" => base64_summary, "subject" => subject, "description" => description, "external_id" => external_id, "requester" => requester, "server" => Thread.current[:env]}
 
       response = self.class.post("/submit", :body => parameters, :headers => {"Authentication" => @header})
 
