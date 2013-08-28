@@ -13,7 +13,7 @@ require 'httparty'
 #         submit( base64_summary, requester, comment, external_id )
 #         update( id, status, is_external_id )
 
-class RaideAPI
+class RaideIO
   include HTTParty
   format :json
   base_uri 'http://api.raide.io/1.0/'
